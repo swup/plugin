@@ -1,6 +1,6 @@
 {
   "name": "@swup/plugin",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Swup base plugin.",
   "main": "lib/index.js",
   "scripts": {

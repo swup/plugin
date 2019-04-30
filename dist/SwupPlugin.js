@@ -90,26 +90,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Plugin = function () {
-    function Plugin(definedOptions) {
+    function Plugin() {
         _classCallCheck(this, Plugin);
 
-        this.defaultOptions = {};
         this.isSwupPlugin = true;
-
-        var options = _extends({}, defaultOptions, definedOptions);
-
-        this.options = options;
-
-        if (typeof this.name !== "string") {
-            console.warn('Swup plugin must have a name.');
-        }
     }
 
     _createClass(Plugin, [{
