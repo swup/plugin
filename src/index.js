@@ -9,6 +9,14 @@ export default class Plugin {
         // and is executed when swup with plugin is disabled
     }
 
+    _beforeMount() {
+        // here for any future hidden auto init
+    }
+
+    _afterUnmount() {
+        // here for any future hidden auto-cleanup
+    }
+
     // this is here so we can tell if plugin was created by extending this class
     isSwupPlugin = true;
 }
