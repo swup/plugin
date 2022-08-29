@@ -1,22 +1,22 @@
 export default class Plugin {
-    mount() {
-        // this is mount method rewritten by class extending
-        // and is executed when swup is enabled with plugin
-    }
+	// this is here so we can tell if plugin was created by extending this class
+	isSwupPlugin = true;
 
-    unmount() {
-        // this is unmount method rewritten by class extending
-        // and is executed when swup with plugin is disabled
-    }
+	mount() {
+		// this is mount method rewritten by class extending
+		// and is executed when swup is enabled with plugin
+	}
 
-    _beforeMount() {
-        // here for any future hidden auto init
-    }
+	unmount() {
+		// this is unmount method rewritten by class extending
+		// and is executed when swup with plugin is disabled
+	}
 
-    _afterUnmount() {
-        // here for any future hidden auto-cleanup
-    }
+	_beforeMount() {
+		// here for any future hidden auto init
+	}
 
-    // this is here so we can tell if plugin was created by extending this class
-    isSwupPlugin = true;
+	_afterUnmount() {
+		// here for any future hidden auto-cleanup
+	}
 }
