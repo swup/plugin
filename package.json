@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "microbundle --external none --no-sourcemap",
+    "build": "microbundle",
     "lint": "prettier src/**/*.{js,mjs} --write",
     "prepublish": "npm run build"
   },
