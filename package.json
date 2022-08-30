@@ -17,11 +17,18 @@
     "lint": "prettier src/**/*.{js,mjs} --write",
     "prepublish": "npm run build"
   },
+  "bin": {
+    "swup-plugin-bundle": "./cli/bundle.js",
+    "swup-plugin-lint": "./cli/lint.js"
+  },
   "author": "Georgy Marchuk",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/swup/plugin.git"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@swup/prettier-config": "^1.0.0",
