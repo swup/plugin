@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import shell from 'shelljs';
+import { exec, echo } from './cli.js';
 
-shell.echo('[swup] Linting plugin');
+echo('Linting plugin...');
 
-shell.exec('prettier src/**/*.{js,mjs} --write');
+exec('prettier src/**/*.{js,mjs} --write');

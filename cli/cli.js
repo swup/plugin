@@ -1,5 +1,9 @@
 import shell from 'shelljs';
 
+export function exec(command) {
+  return shell.exec(command);
+}
+
 export function echo(message) {
   shell.echo(`[swup] ${message}`);
 }

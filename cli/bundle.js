@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { echo, error } from './cli.js';
-import pkg from '../package.json';
+import { exec, echo, error } from './cli.js';
+import pkg from '../package.json' assert { type: "json" };
 
 echo('Bundling plugin...');
 
@@ -30,7 +30,7 @@ if (!pkg.exports) {
 }
 
 if (errors.length) {
-  shell.exec('microbundle -f modern,esm,cjs && microbundle -f umd --external none');
+  error(errors);
 } else {
-  error('microbundle -f modern,esm,cjs && microbundle -f umd --external none');
+  exec('microbundle -f modern,esm,cjs && microbundle -f umd --external none');
 }
