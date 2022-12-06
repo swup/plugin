@@ -28,12 +28,12 @@
     "url": "https://github.com/swup/plugin.git"
   },
   "dependencies": {
-    "shelljs": "^0.8.5"
-  },
-  "devDependencies": {
-    "@swup/prettier-config": "^1.0.0",
+    "shelljs": "^0.8.5",
     "microbundle": "^0.15.1",
     "prettier": "^2.7.1"
+  },
+  "devDependencies": {
+    "@swup/prettier-config": "^1.0.0"
   },
   "prettier": "@swup/prettier-config"
 }
