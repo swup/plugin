@@ -1,7 +1,7 @@
-#!/usr/bin/env node
+import { exec, echo } from './shell.js';
 
-import { exec, echo } from './cli.js';
-
-echo('Linting plugin...');
-
-exec('prettier src/**/*.{js,mjs} --write');
+export default function lint() {
+  echo('Linting plugin...');
+  exec('prettier src/**/*.{js,mjs} --write');
+  return true;
+};

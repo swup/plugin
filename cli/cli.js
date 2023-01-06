@@ -1,18 +1,31 @@
-import shell from 'shelljs';
+#!/usr/bin/env node
 
-export function exec(command) {
-	return shell.exec(command);
-}
+import { echo, cwd, pwd } from './shell.js';
 
-export function echo(message) {
-	shell.echo(`[swup] ${message}`);
-}
+import build from './build.js';
+import check from './check.js';
+import lint from './lint.js';
 
-export function error(message) {
-	if (Array.isArray(message)) {
-		message.forEach(msg => error(msg));
+const commands = {
+	check,
+	lint,
+	build: () => check() && build(),
+};
+
+function main() {
+	const args = process.argv.slice(2);
+	const cmd = args[0];
+	const command = commands[cmd];
+
+	echo(`Plugin CLI called with '${args.join(' ')}'`);
+	echo(`pwd = ${pwd()}`);
+	echo(`cwd = ${cwd()}`);
+
+	if (command) {
+		command(args);
 	} else {
-		echo(`Error: ${message}`);
+		throw new Error(`Unknown command: ${args.join(' ')}`);
 	}
-	shell.exit(1);
 }
+
+main();
