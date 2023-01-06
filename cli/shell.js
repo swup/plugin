@@ -5,7 +5,7 @@ export function cwd() {
 }
 
 export function pwd() {
-	return shell.pwd();
+	return shell.pwd().toString();
 }
 
 export function exec(command) {

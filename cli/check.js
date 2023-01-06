@@ -3,25 +3,10 @@
 import path from 'path';
 import { echo, error, pwd } from './shell.js';
 
-// Import package.json relative to pwd, i.e. the plugin directory
+export default async function check() {
+  const pkg = await loadPluginPackageInfo();
 
-// import pkg from '../package.json' assert { type: "json" };
-
-// import path from 'path';
-// import pkg from path.resolve(pwd(), 'package.json');
-
-// import { createRequire } from 'module';
-// import { pathToFileURL } from 'url';
-
-// const require = createRequire(import.meta.url);
-
-// await import(pathToFileURL(require.resolve(pwd(), 'package.json')));
-
-export default function check() {
-  const pkg = require(path.resolve(pwd(), 'package.json'));
-  console.log(pkg);
-
-  echo(`Checking plugin package info of "${pkg.name}"...`);
+  echo(`Checking package info of ${pkg.name}`);
 
   const errors = [];
 
@@ -51,7 +36,13 @@ export default function check() {
     error(errors);
     return false;
   } else {
-    echo('package.json looking good');
+    echo('package.json looks good!');
     return true;
   }
 };
+
+async function loadPluginPackageInfo() {
+  const importPath = path.resolve(pwd(), 'package.json');
+  const { default: pkg } = await import(importPath, { assert: { type: 'json' } });
+  return pkg;
+}
