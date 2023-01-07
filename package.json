@@ -18,7 +18,7 @@
     "prepublish": "npm run build"
   },
   "bin": {
-    "swup-plugin": "./cli/cli.js"
+    "swup-plugin": "./cli/bin/cli.js"
   },
   "author": "Georgy Marchuk",
   "license": "MIT",

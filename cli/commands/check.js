@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
 import path from 'path';
-import { echo, error, pwd } from './shell.js';
+import { echo, error, pwd } from '../lib/shell.js';
 
 export default async function check() {
   const pkg = await loadPluginPackageInfo();

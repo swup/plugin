@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
-import build from './build.js';
-import check from './check.js';
-import lint from './lint.js';
+import build from '../commands/build.js';
+import check from '../commands/check.js';
+import dev from '../commands/dev.js';
+import lint from '../commands/lint.js';
 
 const commands = {
-	check,
-	lint,
 	build: async () => (await check()) && (await build()),
+	dev: async () => (await check()) && (await dev()),
+	lint,
+	check,
 };
 
 async function main() {

@@ -1,4 +1,4 @@
-import { exec, echo } from './shell.js';
+import { exec, echo } from '../lib/shell.js';
 
 export default async function lint() {
   echo('Linting plugin with prettier');
