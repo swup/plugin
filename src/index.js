@@ -27,10 +27,18 @@ export default class Plugin {
 	}
 
 	_checkVersion() {
-		if (typeof this.requires === 'object' && typeof checkVersion === 'function') {
-			return checkVersion(this.swup, this.requires);
-		} else {
-			return true;
+		if (typeof this.requires !== 'object') {
+			return false;
 		}
+
+		Object.entries(this.requires).forEach(([dependency, versions]) => {
+			versions = Array.isArray(versions) ? versions : [versions];
+			if (!checkVersion(dependency, versions, this.swup)) {
+				const requirement = `${dependency} (${versions.join(', ')}`;
+				throw new Error(`${this.name} requires ${requirement}`);
+			}
+		});
+
+		return true;
 	}
 }
