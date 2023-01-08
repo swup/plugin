@@ -14,12 +14,12 @@
     "dist"
   ],
   "scripts": {
-    "prepublish": "npm run build"
     "build": "npm run build:module && npm run build:bundle",
     "build:module": "microbundle -f modern,esm,cjs",
     "build:bundle": "microbundle -f umd --external none",
     "dev": "microbundle -w",
     "lint": "prettier src/**/*.js --write",
+    "prepublishOnly": "npm run build"
   },
   "bin": {
     "swup-plugin": "./bin/swup-plugin.js"
