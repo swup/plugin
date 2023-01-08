@@ -31,7 +31,7 @@ export default class Plugin {
 
 	_checkRequirements() {
 		if (typeof this.requires !== 'object') {
-			return false;
+			return true;
 		}
 
 		Object.entries(this.requires).forEach(([dependency, versions]) => {
