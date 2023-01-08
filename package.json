@@ -41,5 +41,8 @@
   "devDependencies": {
     "swup": "file:../swup"
   },
+  "peerDependencies": {
+    "swup": "^3.0.0"
+  },
   "prettier": "@swup/prettier-config"
 }
