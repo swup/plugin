@@ -20,14 +20,18 @@ export default class PluginName extends Plugin {
 
 ## Commands
 
-The base plugin installs npm commands to help with bundling and linting plugin code.
+The base plugin provides a few simple command line tools to help with bundling and linting.
 
 ### Bundling
 
 Bundle the plugin for production using [microbundle](https://github.com/developit/microbundle), creating ESM and UMD builds.
 
 ```bash
-swup-plugin-bundle
+# Bundle and transpile plugin code
+swup-plugin bundle
+
+# Bundle plugin code in watch mode
+swup-plugin dev
 ```
 
 ### Linting
@@ -35,5 +39,15 @@ swup-plugin-bundle
 Lint the plugin code using [prettier](https://prettier.io/) and swup's recommended rules.
 
 ```bash
-swup-plugin-lint
+# Lint plugin code
+swup-plugin lint
+```
+
+### Package info
+
+Check that the plugin's package.json file contains the required information for microbundle: input, output, export map, amd name, etc.
+
+```bash
+# Check plugin package info
+swup-plugin check
 ```
