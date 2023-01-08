@@ -1,7 +1,10 @@
 import checkVersion from './checkVersion.js';
 
 export default class Plugin {
-	// this is here so we can tell if plugin was created by extending this class
+	// Required for all plugins
+	name = null;
+
+	// Identify as swup plugin created by extending this class
 	isSwupPlugin = true;
 
 	// Specify the version of swup that is required to use this plugin
@@ -26,7 +29,7 @@ export default class Plugin {
 		// here for any future hidden auto-cleanup
 	}
 
-	_checkVersion() {
+	_checkRequirements() {
 		if (typeof this.requires !== 'object') {
 			return false;
 		}
