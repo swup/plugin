@@ -18,7 +18,7 @@
     "prepublish": "npm run build"
   },
   "bin": {
-    "swup-plugin": "./cli/bin/cli.js"
+    "swup-plugin": "./bin/swup-plugin.js"
   },
   "author": "Georgy Marchuk",
   "license": "MIT",
@@ -27,9 +27,11 @@
     "url": "https://github.com/swup/plugin.git"
   },
   "dependencies": {
-    "shelljs": "^0.8.5",
+    "chalk": "^5.2.0",
     "microbundle": "^0.15.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "shelljs": "^0.8.5",
+    "shelljs-live": "^0.0.5"
   },
   "devDependencies": {
     "@swup/prettier-config": "^1.0.0",

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-import build from '../commands/build.js';
-import check from '../commands/check.js';
-import dev from '../commands/dev.js';
-import lint from '../commands/lint.js';
+import build from './commands/build.js';
+import check from './commands/check.js';
+import dev from './commands/dev.js';
+import lint from './commands/lint.js';
+
+import { error } from './lib/shell.js';
 
 const commands = {
 	build: async () => (await check()) && (await build()),
@@ -17,12 +19,12 @@ async function main() {
 
 	const command = args[0] || '';
 	if (!command) {
-		throw new Error(`Missing command (available: ${Object.keys(commands).join(', ')}`);
+		return error(`Missing command (available: ${Object.keys(commands).join(', ')}`);
 	}
 
 	const handler = commands[command];
 	if (!handler) {
-		throw new Error(`Unknown command: ${args.join(' ')}`);
+		return error(`Unknown command: ${args.join(' ')}`);
 	}
 
 	await handler(args);
