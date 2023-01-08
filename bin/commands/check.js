@@ -6,6 +6,18 @@ export default async function check() {
 
 	echo(`Checking package info of ${pkg.name}`);
 
+	const { errors } = checkPluginPackageInfo(pkg);
+
+	if (errors.length) {
+		error(errors);
+		return false;
+	} else {
+		echo('package.json looks good!');
+		return true;
+	}
+};
+
+function checkPluginPackageInfo(pkg) {
 	const errors = [];
 
 	if (!pkg.amdName) {
@@ -30,14 +42,8 @@ export default async function check() {
 		errors.push('package.json missing `exports` property');
 	}
 
-	if (errors.length) {
-		error(errors);
-		return false;
-	} else {
-		echo('package.json looks good!');
-		return true;
-	}
-};
+	return { errors };
+}
 
 async function loadPluginPackageInfo() {
 	const importPath = resolve('package.json');
