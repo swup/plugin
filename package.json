@@ -31,6 +31,7 @@
     "url": "https://github.com/swup/plugin.git"
   },
   "dependencies": {
+    "@swup/prettier-config": "^1.0.0",
     "chalk": "^5.2.0",
     "microbundle": "^0.15.1",
     "prettier": "^2.7.1",
@@ -38,7 +39,6 @@
     "shelljs-live": "^0.0.5"
   },
   "devDependencies": {
-    "@swup/prettier-config": "^1.0.0",
     "swup": "file:../swup"
   },
   "prettier": "@swup/prettier-config"
