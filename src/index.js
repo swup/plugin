@@ -37,8 +37,8 @@ export default class Plugin {
 		Object.entries(this.requires).forEach(([dependency, versions]) => {
 			versions = Array.isArray(versions) ? versions : [versions];
 			if (!checkVersion(dependency, versions, this.swup)) {
-				const requirement = `${dependency} (${versions.join(', ')}`;
-				throw new Error(`${this.name} requires ${requirement}`);
+				const requirement = `${dependency} ${versions.join(', ')}`;
+				throw new Error(`Plugin version mismatch: ${this.name} requires ${requirement}`);
 			}
 		});
 
