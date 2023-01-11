@@ -1,7 +1,7 @@
 {
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
-  "version": "2.0.0",
+  "version": "2.0.0-rc.1",
   "description": "Swup base plugin",
   "type": "module",
   "source": "src/index.js",
@@ -39,7 +39,7 @@
     "shelljs-live": "^0.0.5"
   },
   "devDependencies": {
-    "swup": "file:../swup"
+    "swup": "^3.0.0-rc.1"
   },
   "peerDependencies": {
     "swup": "^3.0.0"
