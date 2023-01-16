@@ -1,4 +1,4 @@
-import { versionSatisfies } from 'swup/helpers';
+import { versionSatisfies } from 'swup';
 
 export default function checkVersion(dependency, requirements, swup) {
 	const version = getInstalledDependencyVersion(dependency, swup);
