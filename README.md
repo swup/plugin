@@ -34,13 +34,16 @@ swup-plugin bundle
 swup-plugin dev
 ```
 
-### Linting
+### Linting & formatting
 
 Lint the plugin code using [prettier](https://prettier.io/) and swup's recommended rules.
 
 ```bash
 # Lint plugin code
 swup-plugin lint
+
+# Fix and format any lint errors
+swup-plugin format
 ```
 
 ### Package info
