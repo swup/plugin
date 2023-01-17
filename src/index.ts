@@ -1,27 +1,19 @@
+import Swup from 'swup';
 import { checkDependencyVersion } from './pluginRequirements';
-
-export type Swup = {
-	version: string;
-	findPlugin: (name: string) => SwupPlugin | null;
-};
-
-export type SwupPlugin = {
-	version?: string;
-};
 
 export default class Plugin {
 	// Required for all plugins
-	name: string = '';
+	name: string;
 
 	// Identify as swup plugin created by extending this class
-	isSwupPlugin: boolean = true;
+	isSwupPlugin: true;
 
 	// Specify the version of swup that is required to use this plugin
 	// e.g. requires = { swup: '>=3.0' }
 	requires: object = {};
 
 	// Swup instance, assigned by swup itself
-	swup: Swup = {};
+	swup: Swup;
 
 	mount(): void {
 		// this is mount method rewritten by class extending
