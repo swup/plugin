@@ -15,6 +15,9 @@ export default class Plugin {
 	// Swup instance, assigned by swup itself
 	swup: Swup;
 
+	// Version, not in use
+	version: string | undefined;
+
 	mount(): void {
 		// this is mount method rewritten by class extending
 		// and is executed when swup is enabled with plugin

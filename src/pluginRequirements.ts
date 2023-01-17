@@ -8,10 +8,9 @@ function getInstalledDependencyVersion(dependency: string, swup: Swup): string {
 		return swup.version ?? '';
 	} else {
 		// Circular type dependency?
-		// findPlugin returns swup's Plugin type which is incompatible with
-		// the actual Plugin type from index.ts
-		const plugin = swup.findPlugin(dependency);
-		// @ts-ignore
+		// findPlugin returns swup's Plugin type which is not up-to-date
+		// with the actual Plugin type from index.ts
+		const plugin = swup.findPlugin(dependency) as Plugin;
 		return plugin?.version ?? '';
 	}
 }
