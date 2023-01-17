@@ -37,13 +37,8 @@
     "microbundle": "^0.15.1",
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
-    "shelljs-live": "^0.0.5"
-  },
-  "devDependencies": {
+    "shelljs-live": "^0.0.5",
     "swup": "3.0.0-rc.3"
-  },
-  "peerDependencies": {
-    "swup": "^3.0.0"
   },
   "prettier": "@swup/prettier-config"
 }
