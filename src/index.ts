@@ -10,7 +10,7 @@ export type { PluginType };
 // and forces the plugin author to define name on their side
 export default class Plugin implements Omit<PluginType, 'name'> {
 	// Identify as swup plugin created by extending this class
-	isSwupPlugin: true = true;
+	isSwupPlugin = true as const;
 
 	// Specify the version of swup that is required to use this plugin
 	// e.g. requires = { swup: '>=3.0' }
