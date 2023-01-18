@@ -1,12 +1,29 @@
 {
   "name": "@swup/plugin",
-  "version": "1.0.1",
-  "description": "Swup base plugin.",
-  "main": "lib/index.js",
+  "amdName": "SwupPlugin",
+  "version": "2.0.0",
+  "description": "Swup base plugin",
+  "type": "module",
+  "source": "src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "exports": "./dist/index.modern.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
   "scripts": {
-    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
-    "build": "webpack-cli",
-    "prepublish": "npm run compile && npm run build"
+    "build": "npm run build:module && npm run build:bundle",
+    "build:module": "microbundle -f modern,esm,cjs",
+    "build:bundle": "microbundle -f umd --external none",
+    "dev": "microbundle -w",
+    "lint": "prettier src/**/*.ts --check",
+    "format": "prettier src/**/*.ts --write",
+    "prepublishOnly": "npm run build"
+  },
+  "bin": {
+    "swup-plugin": "./bin/swup-plugin.js"
   },
   "author": "Georgy Marchuk",
   "license": "MIT",
@@ -14,15 +31,14 @@
     "type": "git",
     "url": "https://github.com/swup/plugin.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "@swup/prettier-config": "^1.0.0",
-    "@swup/webpack-config": "^0.1.2",
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "prettier": "1.17.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1"
-  }
+    "chalk": "^5.2.0",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.7.1",
+    "shelljs": "^0.8.5",
+    "shelljs-live": "^0.0.5",
+    "swup": "3.0.0-rc.4"
+  },
+  "prettier": "@swup/prettier-config"
 }
