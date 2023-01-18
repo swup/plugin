@@ -1,15 +1,26 @@
-import checkVersion from './checkVersion.js';
+import Swup from 'swup';
+import type { Plugin as PluginType } from 'swup';
+import { checkDependencyVersion } from "./pluginRequirements";
 
-export default class Plugin {
-	// Required for all plugins
-	name = null;
+export type { PluginType };
 
+// omitting name as we don't want to define it here,
+// it must be defined in the extended class of the plugin
+// and so the type will say the same when omitting here
+// and forces the plugin author to define name on their side
+export default class Plugin implements Omit<PluginType, 'name'> {
 	// Identify as swup plugin created by extending this class
-	isSwupPlugin = true;
+	isSwupPlugin = true as const;
 
 	// Specify the version of swup that is required to use this plugin
 	// e.g. requires = { swup: '>=3.0' }
 	requires = {};
+
+	// Swup instance, assigned by swup itself
+	swup: Swup;
+
+	// Version, not in use
+	version: string | undefined;
 
 	mount() {
 		// this is mount method rewritten by class extending
@@ -22,7 +33,10 @@ export default class Plugin {
 	}
 
 	_beforeMount() {
-		// here for any future hidden auto init
+		// @ts-ignore name is always defined by extending the Plugin class
+		if (!this.name) {
+			throw new Error('You must define a name of plugin when creating a class.')
+		}
 	}
 
 	_afterUnmount() {
@@ -36,8 +50,9 @@ export default class Plugin {
 
 		Object.entries(this.requires).forEach(([dependency, versions]) => {
 			versions = Array.isArray(versions) ? versions : [versions];
-			if (!checkVersion(dependency, versions, this.swup)) {
+			if (!checkDependencyVersion(dependency, versions, this.swup)) {
 				const requirement = `${dependency} ${versions.join(', ')}`;
+				// @ts-ignore name is always defined by extending the Plugin class
 				throw new Error(`Plugin version mismatch: ${this.name} requires ${requirement}`);
 			}
 		});

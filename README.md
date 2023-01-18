@@ -18,6 +18,19 @@ export default class PluginName extends Plugin {
 }
 ```
 
+or alternatively with TS
+
+```ts
+import Plugin, { PluginType } from '@swup/plugin';
+
+export default class PluginName extends Plugin implements PluginType {
+  name = 'PluginName';
+  mount() {}
+  unmount() {}
+}
+```
+
+
 ## Commands
 
 The base plugin provides a few simple command line tools to help with bundling and linting.

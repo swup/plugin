@@ -4,7 +4,7 @@
   "version": "2.0.0-rc.2",
   "description": "Swup base plugin",
   "type": "module",
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
@@ -18,8 +18,8 @@
     "build:module": "microbundle -f modern,esm,cjs",
     "build:bundle": "microbundle -f umd --external none",
     "dev": "microbundle -w",
-    "lint": "prettier src/**/*.js --check",
-    "format": "prettier src/**/*.js --write",
+    "lint": "prettier src/**/*.ts --check",
+    "format": "prettier src/**/*.ts --write",
     "prepublishOnly": "npm run build"
   },
   "bin": {
@@ -38,7 +38,7 @@
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "shelljs-live": "^0.0.5",
-    "swup": "3.0.0-rc.3"
+    "swup": "3.0.0-rc.4"
   },
   "prettier": "@swup/prettier-config"
 }
