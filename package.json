@@ -1,7 +1,7 @@
 {
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0-rc.3",
   "description": "Swup base plugin",
   "type": "module",
   "source": "src/index.ts",
