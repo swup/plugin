@@ -1,6 +1,5 @@
 import Swup from 'swup';
 
-import Plugin from './index';
 import { versionSatisfies } from './versionSatisfies';
 
 function getInstalledDependencyVersion(dependency: string, swup: Swup): string {
@@ -10,7 +9,7 @@ function getInstalledDependencyVersion(dependency: string, swup: Swup): string {
 		// Circular type dependency?
 		// findPlugin returns swup's Plugin type which is not up-to-date
 		// with the actual Plugin type from index.ts
-		const plugin = swup.findPlugin(dependency) as Plugin;
+		const plugin = swup.findPlugin(dependency);
 		return plugin?.version ?? '';
 	}
 }
