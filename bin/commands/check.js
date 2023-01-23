@@ -47,6 +47,6 @@ function checkPluginPackageInfo(pkg) {
 
 async function loadPluginPackageInfo() {
 	const importPath = resolve('package.json');
-	const { default: pkg } = await import(importPath, { assert: { type: 'json' } });
+	const { default: pkg } = await import(importPath { assert: { type: 'json' } });
 	return pkg;
 }
