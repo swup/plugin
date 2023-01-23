@@ -1,3 +1,5 @@
+import { readFile } from 'fs/promises';
+
 import { echo, error } from '../lib/shell.js';
 import { resolve } from '../lib/helpers.js';
 
@@ -46,7 +48,6 @@ function checkPluginPackageInfo(pkg) {
 }
 
 async function loadPluginPackageInfo() {
-	const importPath = resolve('package.json');
-	const { default: pkg } = await import(importPath { assert: { type: 'json' } });
-	return pkg;
+	const importPath = new URL(resolve('package.json'), import.meta.url);
+	return JSON.parse(await readFile(importPath));
 }
