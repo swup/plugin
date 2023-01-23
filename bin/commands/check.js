@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 
 import { echo, error } from '../lib/shell.js';
 import { resolve } from '../lib/helpers.js';
