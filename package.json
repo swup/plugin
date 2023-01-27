@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "build": "npm run build:module && npm run build:bundle",
-    "build:module": "microbundle -f modern,esm,cjs",
-    "build:bundle": "microbundle -f umd --external none",
-    "dev": "microbundle -w",
+    "build:module": "BROWSERSLIST_ENV=modern microbundle -f modern,esm,cjs",
+    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none",
+    "dev": "BROWSERSLIST_ENV=development microbundle -w",
     "lint": "prettier src/**/*.ts --check",
     "format": "prettier src/**/*.ts --write",
     "prepublishOnly": "npm run build"
@@ -32,6 +32,7 @@
     "url": "https://github.com/swup/plugin.git"
   },
   "dependencies": {
+    "@swup/browserslist-config": "^1.0.0",
     "@swup/prettier-config": "^1.0.0",
     "chalk": "^5.2.0",
     "microbundle": "^0.15.1",
@@ -40,5 +41,8 @@
     "shelljs-live": "^0.0.5",
     "swup": "^3.0.0"
   },
+  "browserslist": [
+    "extends @swup/browserslist-config"
+  ],
   "prettier": "@swup/prettier-config"
 }
