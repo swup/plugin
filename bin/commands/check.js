@@ -43,6 +43,9 @@ function checkPluginPackageInfo(pkg) {
 	if (!pkg.exports) {
 		errors.push('package.json missing `exports` property');
 	}
+	if (!pkg.browserslist) {
+		errors.push('package.json missing `browserslist` property');
+	}
 
 	return { errors };
 }
