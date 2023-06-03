@@ -1,14 +1,21 @@
 {
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Swup base plugin",
   "type": "module",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
-  "exports": "./dist/index.modern.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.modern.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "bin",
     "dist"
