@@ -8,7 +8,14 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
-  "exports": "./dist/index.modern.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.modern.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "bin",
     "dist"
