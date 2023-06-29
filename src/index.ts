@@ -1,6 +1,6 @@
 import Swup from 'swup';
 import type { Plugin as PluginType } from 'swup';
-import { checkDependencyVersion } from "./pluginRequirements";
+import { checkDependencyVersion } from './pluginRequirements';
 
 export type { PluginType };
 
@@ -35,7 +35,7 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 	_beforeMount() {
 		// @ts-ignore name is always defined by extending the Plugin class
 		if (!this.name) {
-			throw new Error('You must define a name of plugin when creating a class.')
+			throw new Error('You must define a name of plugin when creating a class.');
 		}
 	}
 
