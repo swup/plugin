@@ -46,7 +46,7 @@
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "shelljs-live": "^0.0.5",
-    "swup": "^3.0.0"
+    "swup": "4.0.0-rc.14"
   },
   "browserslist": [
     "extends @swup/browserslist-config"
