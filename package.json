@@ -21,12 +21,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build:module && npm run build:bundle",
-    "build:module": "BROWSERSLIST_ENV=modern microbundle -f modern,esm,cjs",
-    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none",
-    "dev": "BROWSERSLIST_ENV=development microbundle -w",
-    "lint": "prettier src/**/*.ts --check",
-    "format": "prettier src/**/*.ts --write",
+    "build": "npx swup-plugin build",
+    "dev": "npx swup-plugin dev",
+    "lint": "npx swup-plugin lint",
+    "format": "npx swup-plugin format",
     "prepublishOnly": "npm run build"
   },
   "bin": {
