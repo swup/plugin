@@ -1,6 +1,6 @@
 import Swup from 'swup';
 
-import { versionSatisfies } from './versionSatisfies';
+import { versionSatisfies } from './versionSatisfies.js';
 
 function getInstalledDependencyVersion(dependency: string, swup: Swup): string {
 	if (dependency === 'swup') {
