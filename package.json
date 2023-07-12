@@ -1,8 +1,8 @@
 {
   "name": "@hirasso/swup-plugin",
   "amdName": "SwupPlugin",
-  "description": "Swup base plugin",
-  "version": "3.0.0-rc.4",
+  "description": "Base class for creating swup plugins",
+  "version": "3.0.0-rc.2",
   "type": "module",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
