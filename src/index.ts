@@ -1,6 +1,8 @@
 import Swup from 'swup';
-import type { Plugin as PluginType } from 'swup';
+import type { Plugin as PluginType, HookName, HookOptions, Handler } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements';
+
+type HookUnsubscribe = () => void;
 
 export type { PluginType };
 
@@ -21,6 +23,8 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 
 	// Version, not in use
 	version: string | undefined;
+	// List of hook handlers, automatically unsubscribed on unmount
+	private handlers: HookUnsubscribe[] = [];
 
 	mount() {
 		// this is mount method rewritten by class extending
@@ -30,6 +34,19 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 	unmount() {
 		// this is unmount method rewritten by class extending
 		// and is executed when swup with plugin is disabled
+
+		// Unsubscribe all registered hook handlers
+		this.handlers.forEach((unsubscribe) => unsubscribe());
+	}
+
+	/**
+	 * Register a new hook handler. Automatically unsubscribed on unmount.
+	 * @see swup.hooks.on
+	 */
+	on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): Handler<T> {
+		this.swup.hooks.on(hook, handler, options);
+		this.handlers.push(() => this.swup.hooks.off(hook, handler));
+		return handler;
 	}
 
 	_beforeMount() {
