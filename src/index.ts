@@ -45,7 +45,7 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 	 * Register a new hook handler. Automatically unsubscribed on unmount.
 	 * @see swup.hooks.on
 	 */
-	on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): Handler<T> {
+	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): Handler<T> {
 		this.handlers.push(() => this.swup.hooks.off(hook, handler));
 		return this.swup.hooks.on(hook, handler, options);
 	}
