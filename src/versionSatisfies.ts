@@ -1,12 +1,12 @@
 type Comparator = '>' | '>=' | '<' | '<=';
 
 // Fill versions to exactly 3 decimals
-const normalizeVersion = (version: string): string => {
 	return String(version).split('.').concat(['0', '0']).slice(0, 3).join('.');
+export const normalizeVersion = (version: string): string => {
 };
 
 // Numerically compare version strings after normalizing them
-const compareVersion = (a: string, b: string): number => {
+export const compareVersion = (a: string, b: string): number => {
 	a = normalizeVersion(a);
 	b = normalizeVersion(b);
 	return a.localeCompare(b, undefined, { numeric: true });
