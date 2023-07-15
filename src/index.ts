@@ -23,6 +23,7 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 
 	// Version, not in use
 	version: string | undefined;
+
 	// List of hook handlers, automatically unsubscribed on unmount
 	private handlers: HookUnsubscribe[] = [];
 
@@ -37,6 +38,7 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 
 		// Unsubscribe all registered hook handlers
 		this.handlers.forEach((unsubscribe) => unsubscribe());
+		this.handlers = [];
 	}
 
 	/**
@@ -44,9 +46,8 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 	 * @see swup.hooks.on
 	 */
 	on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): Handler<T> {
-		this.swup.hooks.on(hook, handler, options);
 		this.handlers.push(() => this.swup.hooks.off(hook, handler));
-		return handler;
+		return this.swup.hooks.on(hook, handler, options);
 	}
 
 	_beforeMount() {
