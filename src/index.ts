@@ -1,10 +1,10 @@
 import type Swup from 'swup';
-import type { Plugin as PluginType } from 'swup';
+import type { Plugin } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
 export type { PluginType };
 
-export default abstract class Plugin implements PluginType {
+export default abstract class SwupPlugin implements Plugin {
 	/** Name of the plugin */
 	abstract name: string;
 
