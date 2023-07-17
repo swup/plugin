@@ -2,7 +2,7 @@ import Swup from 'swup';
 import type { Plugin as PluginType, HookName, HookOptions, Handler } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
-type HookUnsubscribe = () => void;
+type HookUnregister = () => void;
 
 export type { PluginType };
 
@@ -24,8 +24,8 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 	// Version, not in use
 	version: string | undefined;
 
-	// List of hook handlers, automatically unsubscribed on unmount
-	private handlers: HookUnsubscribe[] = [];
+	// List of hook handlers to unregister on unmount
+	private handlersToUnregister: HookUnregister[] = [];
 
 	mount() {
 		// this is mount method rewritten by class extending
@@ -37,17 +37,18 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 		// and is executed when swup with plugin is disabled
 
 		// Unsubscribe all registered hook handlers
-		this.handlers.forEach((unsubscribe) => unsubscribe());
-		this.handlers = [];
+		this.handlersToUnregister.forEach((unregister) => unregister());
+		this.handlersToUnregister = [];
 	}
 
 	/**
 	 * Register a new hook handler. Automatically unsubscribed on unmount.
 	 * @see swup.hooks.on
 	 */
-	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): Handler<T> {
-		this.handlers.push(() => this.swup.hooks.off(hook, handler));
-		return this.swup.hooks.on(hook, handler, options);
+	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		const unregister = this.swup.hooks.on(hook, handler, options) as HookUnregister;
+		this.handlersToUnregister.push(unregister);
+		return unregister;
 	}
 
 	_beforeMount() {
