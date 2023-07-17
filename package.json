@@ -25,6 +25,7 @@
     "dev": "npx swup-plugin dev",
     "lint": "npx swup-plugin lint",
     "format": "npx swup-plugin format",
+    "test": "vitest run --config ./vitest/vitest.config.ts",
     "prepublishOnly": "npm run build"
   },
   "bin": {
@@ -49,5 +50,9 @@
   "browserslist": [
     "extends @swup/browserslist-config"
   ],
-  "prettier": "@swup/prettier-config"
+  "prettier": "@swup/prettier-config",
+  "devDependencies": {
+    "jsdom": "^22.1.0",
+    "vitest": "^0.33.0"
+  }
 }
