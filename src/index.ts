@@ -1,49 +1,46 @@
 import type Swup from 'swup';
-import type { Plugin as PluginType } from 'swup';
+import type { Plugin } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
-export type { PluginType };
+export default abstract class SwupPlugin implements Plugin {
+	/** Name of the plugin */
+	abstract name: string;
 
-// omitting name as we don't want to define it here,
-// it must be defined in the extended class of the plugin
-// and so the type will say the same when omitting here
-// and forces the plugin author to define name on their side
-export default class Plugin implements Omit<PluginType, 'name'> {
-	// Identify as swup plugin created by extending this class
-	isSwupPlugin = true as const;
+	/** Identify as a swup plugin */
+	isSwupPlugin: true = true;
 
-	// Specify the version of swup that is required to use this plugin
-	// e.g. requires = { swup: '>=3.0' }
-	requires = {};
 
 	// Swup instance, assigned by swup itself
 	swup: Swup;
+	/** Version of this plugin. Currently not in use, defined here for backward compatiblity. */
+	version?: string;
 
-	// Version, not in use
-	version: string | undefined;
+	/** Version requirements of this plugin. Example: `{ swup: '>=4' }` */
+	requires?: Record<string, string | string[]> = {};
 
+	/** Run on mount */
 	mount() {
 		// this is mount method rewritten by class extending
 		// and is executed when swup is enabled with plugin
 	}
 
+	/** Run on unmount */
 	unmount() {
 		// this is unmount method rewritten by class extending
 		// and is executed when swup with plugin is disabled
 	}
 
-	_beforeMount() {
-		// @ts-ignore name is always defined by extending the Plugin class
+	_beforeMount(): void {
 		if (!this.name) {
 			throw new Error('You must define a name of plugin when creating a class.');
 		}
 	}
 
-	_afterUnmount() {
+	_afterUnmount(): void {
 		// here for any future hidden auto-cleanup
 	}
 
-	_checkRequirements() {
+	_checkRequirements(): boolean {
 		if (typeof this.requires !== 'object') {
 			return true;
 		}
@@ -52,7 +49,6 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 			versions = Array.isArray(versions) ? versions : [versions];
 			if (!checkDependencyVersion(dependency, versions, this.swup)) {
 				const requirement = `${dependency} ${versions.join(', ')}`;
-				// @ts-ignore name is always defined by extending the Plugin class
 				throw new Error(`Plugin version mismatch: ${this.name} requires ${requirement}`);
 			}
 		});

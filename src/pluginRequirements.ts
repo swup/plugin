@@ -1,4 +1,4 @@
-import Swup from 'swup';
+import type Swup from 'swup';
 
 import { versionSatisfies } from './versionSatisfies.js';
 
