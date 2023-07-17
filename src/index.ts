@@ -24,28 +24,29 @@ export default abstract class Plugin implements PluginType {
 	// Version, not in use
 	version: string | undefined;
 
+	/** Run on mount */
 	mount() {
 		// this is mount method rewritten by class extending
 		// and is executed when swup is enabled with plugin
 	}
 
+	/** Run on unmount */
 	unmount() {
 		// this is unmount method rewritten by class extending
 		// and is executed when swup with plugin is disabled
 	}
 
-	_beforeMount() {
-		// @ts-ignore name is always defined by extending the Plugin class
+	_beforeMount(): void {
 		if (!this.name) {
 			throw new Error('You must define a name of plugin when creating a class.');
 		}
 	}
 
-	_afterUnmount() {
+	_afterUnmount(): void {
 		// here for any future hidden auto-cleanup
 	}
 
-	_checkRequirements() {
+	_checkRequirements(): boolean {
 		if (typeof this.requires !== 'object') {
 			return true;
 		}
