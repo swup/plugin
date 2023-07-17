@@ -1,6 +1,6 @@
 import Swup from 'swup';
 import type { Plugin as PluginType } from 'swup';
-import { checkDependencyVersion } from './pluginRequirements';
+import { checkDependencyVersion } from './pluginRequirements.js';
 
 export type { PluginType };
 
