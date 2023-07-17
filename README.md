@@ -8,6 +8,8 @@ To create a new plugin, use the official [swup plugin template](https://github.c
 
 ## Usage
 
+Import the base class and extend your plugin from it.
+
 ```js
 import Plugin from '@swup/plugin';
 
@@ -17,19 +19,6 @@ export default class PluginName extends Plugin {
   unmount() {}
 }
 ```
-
-or alternatively with TS
-
-```ts
-import Plugin, { PluginType } from '@swup/plugin';
-
-export default class PluginName extends Plugin implements PluginType {
-  name = 'PluginName';
-  mount() {}
-  unmount() {}
-}
-```
-
 
 ## Commands
 
