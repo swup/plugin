@@ -21,10 +21,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx swup-plugin build",
-    "dev": "npx swup-plugin dev",
-    "lint": "npx swup-plugin lint",
-    "format": "npx swup-plugin format",
+    "build": "swup-plugin build",
+    "dev": "swup-plugin dev",
+    "lint": "swup-plugin lint",
+    "format": "swup-plugin format",
     "test": "vitest run --config ./vitest/vitest.config.ts",
     "prepublishOnly": "npm run build"
   },
