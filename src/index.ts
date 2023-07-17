@@ -1,6 +1,6 @@
 import Swup from 'swup';
 import type { Plugin as PluginType, HookName, HookOptions, Handler } from 'swup';
-import { checkDependencyVersion } from './pluginRequirements';
+import { checkDependencyVersion } from './pluginRequirements.js';
 
 type HookUnsubscribe = () => void;
 

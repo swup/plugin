@@ -1,6 +1,6 @@
 # Swup Base Plugin
 
-Base class for creating swup plugins.
+Base class for creating [swup](https://swup.js.org) plugins.
 
 ## Creating a Plugin
 
