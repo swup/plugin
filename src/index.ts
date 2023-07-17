@@ -4,10 +4,6 @@ import { checkDependencyVersion } from './pluginRequirements.js';
 
 export type { PluginType };
 
-// omitting name as we don't want to define it here,
-// it must be defined in the extended class of the plugin
-// and so the type will say the same when omitting here
-// and forces the plugin author to define name on their side
 export default abstract class Plugin implements PluginType {
 	/** Name of the plugin */
 	abstract name: string;
