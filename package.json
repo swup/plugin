@@ -21,10 +21,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "swup-plugin build",
-    "dev": "swup-plugin dev",
-    "lint": "swup-plugin lint",
-    "format": "swup-plugin format",
+    "build": "npm run build:module && npm run build:bundle",
+    "build:module": "BROWSERSLIST_ENV=modern microbundle -f modern,esm,cjs",
+    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none",
+    "dev": "BROWSERSLIST_ENV=development microbundle -f modern -w",
+    "lint": "prettier src/**/*.ts --check",
+    "format": "prettier src/**/*.ts --write",
     "test": "vitest run --config ./vitest/vitest.config.ts",
     "prepublishOnly": "npm run build"
   },
