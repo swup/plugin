@@ -8,7 +8,9 @@ export type { PluginType };
 // it must be defined in the extended class of the plugin
 // and so the type will say the same when omitting here
 // and forces the plugin author to define name on their side
-export default class Plugin implements Omit<PluginType, 'name'> {
+export default abstract class Plugin implements PluginType {
+	abstract name: string;
+
 	// Identify as swup plugin created by extending this class
 	isSwupPlugin = true as const;
 
@@ -52,7 +54,6 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 			versions = Array.isArray(versions) ? versions : [versions];
 			if (!checkDependencyVersion(dependency, versions, this.swup)) {
 				const requirement = `${dependency} ${versions.join(', ')}`;
-				// @ts-ignore name is always defined by extending the Plugin class
 				throw new Error(`Plugin version mismatch: ${this.name} requires ${requirement}`);
 			}
 		});
