@@ -9,20 +9,20 @@ export type { PluginType };
 // and so the type will say the same when omitting here
 // and forces the plugin author to define name on their side
 export default abstract class Plugin implements PluginType {
+	/** Name of the plugin */
 	abstract name: string;
 
-	// Identify as swup plugin created by extending this class
-	isSwupPlugin = true as const;
+	/** Identify as a swup plugin */
+	isSwupPlugin: true = true;
 
-	// Specify the version of swup that is required to use this plugin
-	// e.g. requires = { swup: '>=3.0' }
-	requires = {};
 
 	// Swup instance, assigned by swup itself
 	swup: Swup;
+	/** Version of this plugin. Currently not in use, defined here for backward compatiblity. */
+	version?: string;
 
-	// Version, not in use
-	version: string | undefined;
+	/** Version requirements of this plugin. Example: `{ swup: '>=4' }` */
+	requires?: Record<string, string | string[]> = {};
 
 	/** Run on mount */
 	mount() {
