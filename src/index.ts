@@ -1,5 +1,5 @@
 import type Swup from 'swup';
-import type { Plugin } from 'swup';
+import type { Plugin, HookName, HookOptions, HookUnregister, Handler } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
 export default abstract class SwupPlugin implements Plugin {
@@ -18,6 +18,9 @@ export default abstract class SwupPlugin implements Plugin {
 	/** Version requirements of this plugin. Example: `{ swup: '>=4' }` */
 	requires?: Record<string, string | string[]> = {};
 
+	// List of hook handlers to unregister on unmount
+	private handlersToUnregister: HookUnregister[] = [];
+
 	/** Run on mount */
 	mount() {
 		// this is mount method rewritten by class extending
@@ -28,6 +31,10 @@ export default abstract class SwupPlugin implements Plugin {
 	unmount() {
 		// this is unmount method rewritten by class extending
 		// and is executed when swup with plugin is disabled
+
+		// Unsubscribe all registered hook handlers
+		this.handlersToUnregister.forEach((unregister) => unregister());
+		this.handlersToUnregister = [];
 	}
 
 	_beforeMount(): void {
@@ -54,5 +61,31 @@ export default abstract class SwupPlugin implements Plugin {
 		});
 
 		return true;
+	}
+
+	/**
+	 * Register a new hook handler. Automatically unsubscribed on unmount.
+	 * @see swup.hooks.on
+	 */
+	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		const unregister = this.swup.hooks.on(hook, handler, options);
+		this.handlersToUnregister.push(unregister);
+		return unregister;
+	}
+
+	protected once<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, once: true });
+	}
+
+	protected before<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, before: true });
+	}
+
+	protected replace<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, replace: true });
+	}
+
+	protected off<T extends HookName>(hook: T, handler?: Handler<T>): void {
+		return this.swup.hooks.off(hook, handler!);
 	}
 }
