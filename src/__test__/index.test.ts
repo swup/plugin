@@ -9,9 +9,6 @@ declare module 'swup' {
 	}
 }
 
-const swup = new Swup();
-swup.hooks.create('test'	as any);
-
 describe('hooks', () => {
 	it('should register and unregister hooks', () => {
 		const handler = vi.fn();
@@ -25,19 +22,21 @@ describe('hooks', () => {
 				this.on('test', handler);
 				this.once('test', handlerOnce);
 
-				this.swup.hooks.callSync('test' as any, undefined, defaultHandler);
+				this.swup.hooks.callSync('test', undefined, defaultHandler);
 
 				this.replace('test', handlerReplace);
 
-				this.swup.hooks.callSync('test' as any, undefined, defaultHandler);
+				this.swup.hooks.callSync('test', undefined, defaultHandler);
 			}
 			unmount() {
 				super.unmount();
-				this.swup.hooks.callSync('test' as any);
-				this.swup.hooks.callSync('test' as any);
+				this.swup.hooks.callSync('test');
+				this.swup.hooks.callSync('test');
 			}
 		}
 
+		const swup = new Swup();
+		swup.hooks.create('test');
 		const plugin = new Plugin();
 		swup.use(plugin);
 		swup.unuse(plugin);
