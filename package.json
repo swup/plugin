@@ -47,14 +47,14 @@
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "shelljs-live": "^0.0.5",
-    "swup": "^4.0.0-rc.25"
+    "swup": "^4.0.0-rc.26"
+  },
+  "devDependencies": {
+    "jsdom": "^22.1.0",
+    "vitest": "^0.33.0"
   },
   "browserslist": [
     "extends @swup/browserslist-config"
   ],
-  "prettier": "@swup/prettier-config",
-  "devDependencies": {
-    "jsdom": "^22.1.0",
-    "vitest": "^0.33.0"
-  }
+  "prettier": "@swup/prettier-config"
 }
