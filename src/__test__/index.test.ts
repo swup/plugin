@@ -45,4 +45,39 @@ describe('hooks', () => {
 		expect(handlerReplace).toHaveBeenCalledTimes(1);
 		expect(defaultHandler).toHaveBeenCalledTimes(1);
 	});
+
+	it('should bind hook handlers to plugin instance', () => {
+		let thisArgUnbound: any;
+		let thisArgBound: any;
+		let thisArgArrow: any;
+
+		const otherThis = {};
+
+		class Plugin extends BasePlugin {
+			name = 'TestPlugin';
+			mount() {
+				this.on('test', this.unbound);
+				this.on('test', this.bound.bind(otherThis));
+				this.on('test', this.arrow);
+				this.swup.hooks.callSync('test');
+			}
+			unbound() {
+				thisArgUnbound = this;
+			}
+			bound() {
+				thisArgBound = this;
+			}
+			arrow = () => {
+				thisArgArrow = this;
+			}
+		}
+
+		const swup = new Swup();
+		swup.hooks.create('test');
+		const plugin = new Plugin();
+		swup.use(plugin);
+		expect(thisArgUnbound).toBe(plugin);
+		expect(thisArgBound).toBe(otherThis);
+		expect(thisArgArrow).toBe(plugin);
+	});
 });

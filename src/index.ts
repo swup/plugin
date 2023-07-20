@@ -2,13 +2,16 @@ import type Swup from 'swup';
 import type { Plugin, HookName, HookOptions, HookUnregister, Handler } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
+function isBound(func: Function) {
+	return func.name.startsWith('bound ') && !func.hasOwnProperty('prototype');
+}
+
 export default abstract class SwupPlugin implements Plugin {
 	/** Name of the plugin */
 	abstract name: string;
 
 	/** Identify as a swup plugin */
 	isSwupPlugin: true = true;
-
 
 	// Swup instance, assigned by swup itself
 	swup: Swup;
@@ -64,10 +67,14 @@ export default abstract class SwupPlugin implements Plugin {
 	}
 
 	/**
-	 * Register a new hook handler. Automatically unsubscribed on unmount.
+	 * Register a new hook handler.
+	 *
+	 * On plugin unmount, the handler will automatically be unregistered.
+	 * The handler function is lexically bound to the plugin instance for convenience.
 	 * @see swup.hooks.on
 	 */
 	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		handler = !isBound(handler) ? handler.bind(this) : handler;
 		const unregister = this.swup.hooks.on(hook, handler, options);
 		this.handlersToUnregister.push(unregister);
 		return unregister;
