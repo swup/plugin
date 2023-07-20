@@ -41,16 +41,6 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 		this.handlersToUnregister = [];
 	}
 
-	/**
-	 * Register a new hook handler. Automatically unsubscribed on unmount.
-	 * @see swup.hooks.on
-	 */
-	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
-		const unregister = this.swup.hooks.on(hook, handler, options) as HookUnregister;
-		this.handlersToUnregister.push(unregister);
-		return unregister;
-	}
-
 	_beforeMount() {
 		// @ts-ignore name is always defined by extending the Plugin class
 		if (!this.name) {
@@ -77,5 +67,31 @@ export default class Plugin implements Omit<PluginType, 'name'> {
 		});
 
 		return true;
+	}
+
+	/**
+	 * Register a new hook handler. Automatically unsubscribed on unmount.
+	 * @see swup.hooks.on
+	 */
+	protected on<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		const unregister = this.swup.hooks.on(hook, handler, options);
+		this.handlersToUnregister.push(unregister);
+		return unregister;
+	}
+
+	protected once<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, once: true });
+	}
+
+	protected before<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, before: true });
+	}
+
+	protected replace<T extends HookName>(hook: T, handler: Handler<T>, options: HookOptions = {}): HookUnregister {
+		return this.on(hook, handler, { ...options, replace: true });
+	}
+
+	protected off<T extends HookName>(hook: T, handler?: Handler<T>): void {
+		return this.swup.hooks.off(hook, handler!);
 	}
 }
