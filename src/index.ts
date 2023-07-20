@@ -1,10 +1,10 @@
 import type Swup from 'swup';
-import type { HookName, HookOptions, Handler } from 'swup';
+import type { Plugin, HookName, HookOptions, Handler } from 'swup';
 import { checkDependencyVersion } from './pluginRequirements.js';
 
 type HookUnregister = () => void;
 
-export default abstract class SwupPlugin {
+export default abstract class SwupPlugin implements Plugin {
 	/** Name of the plugin */
 	abstract name: string;
 
