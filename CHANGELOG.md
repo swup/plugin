@@ -2,8 +2,10 @@
 
 <!-- ## [Unreleased] -->
 
-## [3.0.0] - 2023-07
+## [3.0.0] - 2023-07-26
 
+- Unregister hook handlers on unmount
+- Autobind hook handlers to plugin instance
 - Update for compatbility with swup 4
 
 ## [2.0.0] - 2023-01
