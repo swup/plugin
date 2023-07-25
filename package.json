@@ -2,7 +2,7 @@
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
   "description": "Base class for creating swup plugins",
-  "version": "3.0.0-rc.26",
+  "version": "3.0.0-rc.27",
   "type": "module",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
@@ -23,7 +23,7 @@
   "scripts": {
     "build": "npm run build:module && npm run build:bundle",
     "build:module": "BROWSERSLIST_ENV=modern microbundle -f modern,esm,cjs",
-    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none",
+    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none --define process.env.NODE_ENV=production",
     "dev": "BROWSERSLIST_ENV=development microbundle -f modern -w",
     "lint": "prettier src/**/*.ts --check",
     "format": "prettier src/**/*.ts --write",
