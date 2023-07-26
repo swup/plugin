@@ -2,7 +2,7 @@
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
   "description": "Base class for creating swup plugins",
-  "version": "3.0.0-rc.27",
+  "version": "3.0.0",
   "type": "module",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
