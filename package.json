@@ -1,8 +1,8 @@
 {
   "name": "@swup/plugin",
   "amdName": "SwupPlugin",
-  "version": "2.0.3",
-  "description": "Swup base plugin",
+  "description": "Base class for creating swup plugins",
+  "version": "3.0.0",
   "type": "module",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
@@ -23,10 +23,11 @@
   "scripts": {
     "build": "npm run build:module && npm run build:bundle",
     "build:module": "BROWSERSLIST_ENV=modern microbundle -f modern,esm,cjs",
-    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none",
-    "dev": "BROWSERSLIST_ENV=development microbundle -w",
+    "build:bundle": "BROWSERSLIST_ENV=production microbundle -f umd --external none --define process.env.NODE_ENV=production",
+    "dev": "BROWSERSLIST_ENV=development microbundle -f modern -w",
     "lint": "prettier src/**/*.ts --check",
     "format": "prettier src/**/*.ts --write",
+    "test": "vitest run --config ./vitest/vitest.config.ts",
     "prepublishOnly": "npm run build"
   },
   "bin": {
@@ -46,7 +47,11 @@
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "shelljs-live": "^0.0.5",
-    "swup": "^3.0.0"
+    "swup": "^4.0.0"
+  },
+  "devDependencies": {
+    "jsdom": "^22.1.0",
+    "vitest": "^0.33.0"
   },
   "browserslist": [
     "extends @swup/browserslist-config"

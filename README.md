@@ -1,12 +1,14 @@
 # Swup Base Plugin
 
-Base class for creating swup plugins.
+Base class for creating [swup](https://swup.js.org) plugins.
 
 ## Creating a Plugin
 
 To create a new plugin, use the official [swup plugin template](https://github.com/swup/plugin-template). It comes with detailed instructions and the required tooling.
 
 ## Usage
+
+Import the base class and extend your plugin from it.
 
 ```js
 import Plugin from '@swup/plugin';
@@ -17,19 +19,6 @@ export default class PluginName extends Plugin {
   unmount() {}
 }
 ```
-
-or alternatively with TS
-
-```ts
-import Plugin, { PluginType } from '@swup/plugin';
-
-export default class PluginName extends Plugin implements PluginType {
-  name = 'PluginName';
-  mount() {}
-  unmount() {}
-}
-```
-
 
 ## Commands
 
