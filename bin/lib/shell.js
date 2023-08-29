@@ -3,8 +3,11 @@ import live from 'shelljs-live';
 import chalk from 'chalk';
 
 export function exec(command) {
-	return live(command);
-	// return shell.exec(command);
+	const status = live(command); // shell.exec(command)
+	if (status !== 0) {
+		shell.exit(status);
+	}
+	return status;
 }
 
 export function echo(message) {
