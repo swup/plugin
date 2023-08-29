@@ -21,7 +21,7 @@ async function main() {
 
 	const command = args[0] || '';
 	if (!command) {
-		return error(`Missing command (available: ${Object.keys(commands).join(', ')}`);
+		return error(`Missing command (available: ${Object.keys(commands).join(', ')})`);
 	}
 
 	const handler = commands[command];
