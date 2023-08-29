@@ -5,8 +5,8 @@ import chalk from 'chalk';
 export function exec(command) {
 	const status = live(command); // shell.exec(command)
 	if (status !== 0) {
-    shell.exit(status);
-  }
+		shell.exit(status);
+	}
 	return status;
 }
 
