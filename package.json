@@ -37,17 +37,14 @@
     "url": "https://github.com/swup/plugin.git"
   },
   "dependencies": {
-    "@swup/browserslist-config": "^1.0.0",
-    "@swup/prettier-config": "^1.0.0",
-    "chalk": "^5.2.0",
-    "microbundle": "^0.15.1",
-    "prettier": "^2.7.1",
-    "shelljs": "^0.8.5",
-    "shelljs-live": "^0.0.5",
     "swup": "^4.0.0"
   },
   "devDependencies": {
+    "@swup/browserslist-config": "^1.0.0",
+    "@swup/prettier-config": "^1.0.0",
     "jsdom": "^22.1.0",
+    "microbundle": "^0.15.1",
+    "prettier": "^3.0.3",
     "vitest": "^0.33.0"
   },
   "browserslist": [
