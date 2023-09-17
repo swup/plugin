@@ -69,7 +69,7 @@ describe('hooks', () => {
 			}
 			arrow = () => {
 				thisArgArrow = this;
-			}
+			};
 		}
 
 		const swup = new Swup();
