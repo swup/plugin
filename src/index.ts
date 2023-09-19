@@ -14,7 +14,8 @@ export default abstract class SwupPlugin implements Plugin {
 	isSwupPlugin: true = true;
 
 	// Swup instance, assigned by swup itself
-	swup: Swup;
+	swup!: Swup;
+
 	/** Version of this plugin. Currently not in use, defined here for backward compatiblity. */
 	version?: string;
 
