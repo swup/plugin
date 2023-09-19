@@ -2,6 +2,10 @@
 
 <!-- ## [Unreleased] -->
 
+## [4.0.0] - 2023-09-19
+
+- Remove package bundling code: moved to `@swup/cli`
+
 ## [3.0.1] - 2023-08-29
 
 - Handle exit codes on build errors
@@ -22,8 +26,9 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/swup/plugin/compare/3.0.1...HEAD
+[Unreleased]: https://github.com/swup/plugin/compare/4.0.0...HEAD
 
+[4.0.0]: https://github.com/swup/plugin/releases/tag/4.0.0
 [3.0.1]: https://github.com/swup/plugin/releases/tag/3.0.1
 [3.0.0]: https://github.com/swup/plugin/releases/tag/3.0.0
 [2.0.0]: https://github.com/swup/plugin/releases/tag/2.0.0
