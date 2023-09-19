@@ -37,10 +37,10 @@ creating ESM and UMD builds.
 
 ```bash
 # Bundle and transpile plugin code for distribution
-swup plugin:bundle
+swup package:bundle
 
 # Bundle plugin code in watch mode
-swup plugin:dev
+swup package:dev
 ```
 
 ### Linting & formatting
@@ -49,10 +49,10 @@ Lint the plugin code using [prettier](https://prettier.io/) and swup's recommend
 
 ```bash
 # Lint plugin code
-swup plugin:lint
+swup package:lint
 
 # Fix and format any lint errors
-swup plugin:format
+swup package:format
 ```
 
 ### Package info
@@ -62,5 +62,5 @@ input, output, export map, amd name, etc.
 
 ```bash
 # Check plugin package info
-swup plugin:check
+swup package:check
 ```
